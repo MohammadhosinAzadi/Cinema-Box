@@ -1,15 +1,17 @@
 import { createApp } from "./createApp";
-import { dbPromise } from "./Database/index";
+import { setupDatabase } from "./Database/index";
+import { Application } from "express";
 
-function listen(app: any) {
-  const port = Number(process.env.PORT) || 3000;
+function listen(app: Application, port = 3000) {
   app.listen(port, () => {
     console.log(`Server running at http://localhost:${port} ----`);
   });
 }
 
 export async function startApp() {
-  await dbPromise;
+  await setupDatabase();
+
   const app = await createApp();
-  listen(app)
+  listen(app, Number(process.env.PORT));
 }
+

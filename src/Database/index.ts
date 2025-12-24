@@ -16,8 +16,6 @@ export const setupDatabase = async (): Promise<Database> => {
   }
 };
 
-export const dbPromise: Promise<Database> = setupDatabase();
-
 
 
 
